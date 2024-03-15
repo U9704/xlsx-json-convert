@@ -48,7 +48,7 @@ app.get('/xlsxToTxt', async (req, res) => {
     const dataItem = sheetData[i]
     const obj = {}
     for (let j = 0; j < objKeys.length; j++) {
-      obj[objKeys[j]] = dataItem[j] ? dataItem[j] + '' : ''
+      obj[objKeys[j]] = dataItem[j] || dataItem[j] === 0 ? dataItem[j] + '' : ''
     }
     await fs.appendFileSync(outputPath, JSON.stringify(obj) + '\r\n')
   }
